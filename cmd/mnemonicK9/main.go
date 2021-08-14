@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/jon4hz/mnemonicK5/internal/config"
-	"github.com/jon4hz/mnemonicK5/internal/telegram"
+	"github.com/jon4hz/mnemonicK9/internal/config"
+	"github.com/jon4hz/mnemonicK9/internal/telegram"
 )
 
 func main() {

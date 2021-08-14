@@ -1,14 +1,14 @@
-BINARY_NAME=mnemonicK5
+BINARY_NAME=mnemonicK9
 
 run:
-	@go run ./cmd/mnemonicK5 ||:
+	@go run ./cmd/mnemonicK9 ||:
 
 build:
-	go build -o ${BINARY_NAME} -ldflags="-s" cmd/mnemonicK5/main.go
+	go build -o ${BINARY_NAME} -ldflags="-s" cmd/mnemonicK9/main.go
 
 docker-push:
-	docker build -t jon4hz/mnemonick5:latest .
-	docker push jon4hz/mnemonick5:latest
+	docker build -t jon4hz/mnemonick9:latest .
+	docker push jon4hz/mnemonick9:latest
 
 docker:
 	docker-compose up -d	

@@ -2,7 +2,9 @@
 version: '3.7'
 services:
   mnemonick9:
-    image: jon4hz/mnemonick9
+    build: 
+      context: .
+      dockerfile: Dockerfile
     restart: unless-stopped
     hostname: mnemonicK9
     container_name: mnemonicK9

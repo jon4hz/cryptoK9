@@ -1,4 +1,4 @@
-module github.com/jon4hz/mnemonicK5
+module github.com/jon4hz/mnemonicK9
 
 go 1.16
 

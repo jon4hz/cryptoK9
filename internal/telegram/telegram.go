@@ -8,7 +8,7 @@ import (
 	"github.com/PaulSonOfLars/gotgbot/v2/ext"
 	"github.com/PaulSonOfLars/gotgbot/v2/ext/handlers"
 	"github.com/PaulSonOfLars/gotgbot/v2/ext/handlers/filters/message"
-	"github.com/jon4hz/mnemonicK5/internal/telegram/handler"
+	"github.com/jon4hz/mnemonicK9/internal/telegram/handler"
 )
 
 var (

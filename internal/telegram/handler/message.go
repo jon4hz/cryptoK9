@@ -6,7 +6,7 @@ import (
 
 	"github.com/PaulSonOfLars/gotgbot/v2"
 	"github.com/PaulSonOfLars/gotgbot/v2/ext"
-	"github.com/jon4hz/mnemonicK5/internal/mnemonic"
+	"github.com/jon4hz/mnemonicK9/internal/mnemonic"
 )
 
 func MessageHandler(b *gotgbot.Bot, ctx *ext.Context) error {
