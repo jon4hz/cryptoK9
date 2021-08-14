@@ -22,8 +22,8 @@ func MessageHandler(b *gotgbot.Bot, ctx *ext.Context) error {
 		close(batch)
 	}()
 
-	go batch12(wg, ctx.EffectiveMessage.Text, batch)
-	go batch24(wg, ctx.EffectiveMessage.Text, batch)
+	go batchMessageText(wg, ctx.EffectiveMessage.Text, 12, batch)
+	go batchMessageText(wg, ctx.EffectiveMessage.Text, 24, batch)
 
 	for v := range batch {
 		if mnemonic.IsValid(v) {
@@ -31,14 +31,6 @@ func MessageHandler(b *gotgbot.Bot, ctx *ext.Context) error {
 		}
 	}
 	return nil
-}
-
-func batch12(wg sync.WaitGroup, msg string, batch chan<- string) {
-	batchMessageText(wg, msg, 12, batch)
-}
-
-func batch24(wg sync.WaitGroup, msg string, batch chan<- string) {
-	batchMessageText(wg, msg, 24, batch)
 }
 
 func batchMessageText(wg sync.WaitGroup, msg string, batchSize int, batch chan<- string) {
