@@ -3,6 +3,7 @@ package handler
 import (
 	"fmt"
 	"strings"
+	"sync"
 
 	"github.com/PaulSonOfLars/gotgbot/v2"
 	"github.com/PaulSonOfLars/gotgbot/v2/ext"
@@ -13,10 +14,18 @@ func MessageHandler(b *gotgbot.Bot, ctx *ext.Context) error {
 
 	batch := make(chan string)
 
-	go batchMessageText(ctx.EffectiveMessage.Text, batch)
+	var wg sync.WaitGroup
+	wg.Add(2)
+
+	go func() {
+		wg.Wait()
+		close(batch)
+	}()
+
+	go batch12(wg, ctx.EffectiveMessage.Text, batch)
+	go batch24(wg, ctx.EffectiveMessage.Text, batch)
 
 	for v := range batch {
-		fmt.Println(v)
 		if mnemonic.IsValid(v) {
 			return deleteMessage(b, ctx)
 		}
@@ -24,16 +33,24 @@ func MessageHandler(b *gotgbot.Bot, ctx *ext.Context) error {
 	return nil
 }
 
-func batchMessageText(msg string, batch chan<- string) {
+func batch12(wg sync.WaitGroup, msg string, batch chan<- string) {
+	batchMessageText(wg, msg, 12, batch)
+}
+
+func batch24(wg sync.WaitGroup, msg string, batch chan<- string) {
+	batchMessageText(wg, msg, 24, batch)
+}
+
+func batchMessageText(wg sync.WaitGroup, msg string, batchSize int, batch chan<- string) {
+	defer wg.Done()
 	x := strings.Fields(msg)
 
 	for i := 0; i < len(x); i++ {
-		var phrase = make([]string, 12)
-		for j := 0; j < 12; j++ {
+		var phrase = make([]string, batchSize)
+		for j := 0; j < batchSize; j++ {
 			if i+j < len(x) {
 				phrase[j] = x[j+i]
 			} else {
-				close(batch)
 				return
 			}
 		}
