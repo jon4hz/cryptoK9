@@ -1,15 +1,22 @@
-FROM golang:alpine as builder
+FROM golang:latest as builder
 # add build dependencies
-RUN apk add --update gcc musl-dev upx make
+RUN apt-get update -qq
+RUN apt-get install -y -qq libtesseract-dev libleptonica-dev
 # build the binary
 RUN mkdir /app 
 ADD . /app/
 WORKDIR /app 
 RUN make build
-# compress the binary
-RUN upx -9 -k cryptoK9
 
-FROM alpine:latest
+
+# runtime image
+FROM golang:latest
+
+RUN apt-get update -qq
+RUN apt-get install -y -qq libtesseract-dev libleptonica-dev
+RUN apt-get install -y -qq \
+  tesseract-ocr-eng
+
 COPY --from=builder /app/cryptoK9 /app/
 WORKDIR /app 
 CMD [ "/app/cryptoK9" ]
