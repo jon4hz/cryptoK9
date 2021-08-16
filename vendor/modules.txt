@@ -1,0 +1,19 @@
+# github.com/PaulSonOfLars/gotgbot/v2 v2.0.0-beta15
+## explicit
+github.com/PaulSonOfLars/gotgbot/v2
+github.com/PaulSonOfLars/gotgbot/v2/ext
+github.com/PaulSonOfLars/gotgbot/v2/ext/handlers
+github.com/PaulSonOfLars/gotgbot/v2/ext/handlers/filters
+github.com/PaulSonOfLars/gotgbot/v2/ext/handlers/filters/message
+# github.com/otiai10/gosseract/v2 v2.3.1
+## explicit
+github.com/otiai10/gosseract/v2
+# github.com/tyler-smith/go-bip39 v1.1.0
+## explicit
+github.com/tyler-smith/go-bip39
+github.com/tyler-smith/go-bip39/wordlists
+# golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9
+golang.org/x/crypto/pbkdf2
+# gopkg.in/yaml.v2 v2.4.0
+## explicit
+gopkg.in/yaml.v2

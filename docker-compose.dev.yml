@@ -1,11 +1,11 @@
 ---
 version: '3.7'
 services:
-  mnemonick9:
+  cryptok9:
     build: 
       context: .
       dockerfile: Dockerfile
     restart: unless-stopped
-    hostname: mnemonicK9
-    container_name: mnemonicK9
+    hostname: cryptoK9
+    container_name: cryptoK9
     env_file: .env

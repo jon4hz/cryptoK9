@@ -7,9 +7,9 @@ ADD . /app/
 WORKDIR /app 
 RUN make build
 # compress the binary
-RUN upx -9 -k mnemonicK9
+RUN upx -9 -k cryptoK9
 
 FROM alpine:latest
-COPY --from=builder /app/mnemonicK9 /app/
+COPY --from=builder /app/cryptoK9 /app/
 WORKDIR /app 
-CMD [ "/app/mnemonicK9" ]
+CMD [ "/app/cryptoK9" ]

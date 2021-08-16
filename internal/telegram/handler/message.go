@@ -2,13 +2,14 @@ package handler
 
 import (
 	"fmt"
+	"log"
 	"regexp"
 	"strings"
 	"sync"
 
 	"github.com/PaulSonOfLars/gotgbot/v2"
 	"github.com/PaulSonOfLars/gotgbot/v2/ext"
-	"github.com/jon4hz/mnemonicK9/internal/mnemonic"
+	"github.com/jon4hz/cryptoK9/internal/mnemonic"
 )
 
 var (
@@ -58,12 +59,12 @@ func batchMessageText(wg sync.WaitGroup, msg string, batchSize int, batch chan<-
 func deleteMessage(b *gotgbot.Bot, ctx *ext.Context) error {
 	_, err := ctx.EffectiveMessage.Delete(b)
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		return err
 	}
 	_, err = ctx.EffectiveChat.SendMessage(b, fmt.Sprintf("⚠️ mnemonic phrase detected! Deleted the message (id=%d)", ctx.Message.MessageId), nil)
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		return err
 	}
 	return nil

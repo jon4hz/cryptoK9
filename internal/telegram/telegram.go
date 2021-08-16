@@ -8,7 +8,7 @@ import (
 	"github.com/PaulSonOfLars/gotgbot/v2/ext"
 	"github.com/PaulSonOfLars/gotgbot/v2/ext/handlers"
 	"github.com/PaulSonOfLars/gotgbot/v2/ext/handlers/filters/message"
-	"github.com/jon4hz/mnemonicK9/internal/telegram/handler"
+	"github.com/jon4hz/cryptoK9/internal/telegram/handler"
 )
 
 var (
@@ -67,4 +67,8 @@ func setHandlers(d *ext.Dispatcher) {
 	msgHandler := handlers.NewMessage(message.Text, handler.MessageHandler)
 	msgHandler.AllowChannel = true
 	d.AddHandler(msgHandler)
+
+	imageHandler := handlers.NewMessage(message.Photo, handler.ImageHandler)
+	imageHandler.AllowChannel = true
+	d.AddHandler(imageHandler)
 }

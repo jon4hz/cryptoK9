@@ -1,9 +1,9 @@
 ---
 version: '3.7'
 services:
-  mnemonick9:
-    image: jon4hz/mnemonick9
+  cryptok9:
+    image: jon4hz/cryptok9
     restart: unless-stopped
-    hostname: mnemonicK9
-    container_name: mnemonicK9
+    hostname: cryptok9
+    container_name: cryptok9
     env_file: .env
