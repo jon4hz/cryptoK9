@@ -47,10 +47,10 @@ func (b *Bot) Start() {
 
 	// TODO replace with webhook
 	err := updater.StartPolling(b.Bot, &ext.PollingOpts{
-		Timeout:            10 * time.Second,
+		Timeout:            11 * time.Second,
 		DropPendingUpdates: true,
 		GetUpdatesOpts: gotgbot.GetUpdatesOpts{
-			Timeout: 11,
+			Timeout: 10,
 			AllowedUpdates: []string{
 				"message",
 			},
