@@ -3,6 +3,7 @@ package telegram
 import (
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/PaulSonOfLars/gotgbot/v2"
 	"github.com/PaulSonOfLars/gotgbot/v2/ext"
@@ -46,8 +47,10 @@ func (b *Bot) Start() {
 
 	// TODO replace with webhook
 	err := updater.StartPolling(b.Bot, &ext.PollingOpts{
+		Timeout:            10 * time.Second,
 		DropPendingUpdates: true,
 		GetUpdatesOpts: gotgbot.GetUpdatesOpts{
+			Timeout: 11,
 			AllowedUpdates: []string{
 				"message",
 			},
