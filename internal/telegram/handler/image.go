@@ -3,6 +3,7 @@ package handler
 import (
 	"bytes"
 	"errors"
+	"fmt"
 	"image"
 	"log"
 	"net/http"
@@ -70,7 +71,21 @@ func ImageHandler(b *gotgbot.Bot, ctx *ext.Context) error {
 }
 
 func handleScam(b *gotgbot.Bot, ctx *ext.Context) error {
-	_, err := ctx.EffectiveMessage.Reply(b, "⚠️ Scam detected!", nil)
+	_, err := ctx.EffectiveMessage.Delete(b)
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+	_, err = b.BanChatMember(ctx.EffectiveMessage.Chat.Id, ctx.EffectiveMessage.From.Id, nil)
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+	_, err = ctx.EffectiveChat.SendMessage(
+		b,
+		fmt.Sprintf("⚠️ Scam detected! \n\nBanned user: %s", ctx.EffectiveUser.Username),
+		nil,
+	)
 	if err != nil {
 		log.Println(err)
 		return err
